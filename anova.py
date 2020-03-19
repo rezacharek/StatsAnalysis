@@ -14,11 +14,12 @@ def element_counter(array):
     return counter
 
 def redefine_arrays(nbr_diff_elem, x_array, y_array):
-    
+    pass
 
 class anova1:
     def __init__(x_array, y_array):
         self.x_array = x_array
         self.y_array = y_array
         self.nbr_diff_elem = element_counter(x_array)
+        
 

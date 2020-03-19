@@ -4,6 +4,9 @@ import math
 import matplotlib.pyplot as plt
 import statistics
 from scipy import stats
+from rich.console import Console
+from rich.table import Column, Table
+import os
 
 class linear_regression:
     def __init__(self, x_array, y_array):
@@ -98,9 +101,17 @@ class linear_regression:
         return self.int_beta_one, self.int_beta_zero
 
     def info(self):
-        print("Beta zero is: ", self.beta_zero, " beta one is:", self.beta_one)
-        print("The minimal mean squared error is:", self.minimal_mean_squared_error)
-        print("The sigma squared estimator is: ", self.sigma_squared_estimator)
+        os.system("clear")
+        console = Console()
+        table = Table(show_header=True, header_style="yellow")
+        table.add_column("Beta Zero")
+        table.add_column("Beta One")
+        table.add_column("Minimal Mean Squared Error")
+        table.add_column("Sigma Squared Estimator")
+        table.add_row(str(self.beta_zero), str(self.beta_one), str(self.minimal_mean_squared_error), str(self.sigma_squared_estimator))
+        # print("minimal mean squared error", self.minimal_mean_squared_error)
+        # print("Sigma squared estimator", self.sigma_squared_estimator)
+        console.print(table)
 
 # class multiple_linear_regression:
 #     def __init__(self, x_matrix, y_matrix):

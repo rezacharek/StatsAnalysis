@@ -22,7 +22,7 @@ model = reg.linear_regression(x,y)
 
 model.info()
 
-print(model.confidence_interval())
+# print(model.confidence_interval())
 
 # x = [1,2,3,4,5,6]
 # y = [1,2,3,4,5,6]
@@ -33,4 +33,4 @@ print(model.confidence_interval())
 # print("Variances")
 # print(statistics.variance(x))
 # print(statistics.variance(y))\
-print(stats.t.ppf(1-0.025, 999))
+# print(stats.t.ppf(1-0.025, 999))
