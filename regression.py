@@ -103,12 +103,13 @@ class linear_regression:
     def info(self):
         os.system("clear")
         console = Console()
-        table = Table(show_header=True, header_style="yellow")
+        table = Table(show_header=True, header_style="bold yellow")
         table.add_column("Beta Zero")
         table.add_column("Beta One")
         table.add_column("Minimal Mean Squared Error")
         table.add_column("Sigma Squared Estimator")
-        table.add_row(str(self.beta_zero), str(self.beta_one), str(self.minimal_mean_squared_error), str(self.sigma_squared_estimator))
+        
+        table.add_row("[ #9deaff ]"+str(self.beta_zero)+"[/#00c9ff]", "[#00c9ff]"+str(self.beta_one)+"[/#00c9ff]", "[#00c9ff]"+str(self.minimal_mean_squared_error)+"[/#00c9ff]", "[#00c9ff]"+str(self.sigma_squared_estimator)+"[/#00c9ff]")
         # print("minimal mean squared error", self.minimal_mean_squared_error)
         # print("Sigma squared estimator", self.sigma_squared_estimator)
         console.print(table)
