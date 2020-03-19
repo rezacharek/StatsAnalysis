@@ -74,15 +74,27 @@ class linear_regression:
         pass
 
     def confidence_interval(self, alpha=0.05):
-        self.int_beta_one = [ self.beta_one - self.sigma_squared_estimator*(stats.t.ppf(1-alpha,self.length_x - 2))/
-        (self.standart_deviation_squared_x * math.sqrt(self.length_x)),
+        a = self.beta_one
+        b = self.beta_one
+        a -= self.sigma_squared_estimator*(stats.t.ppf(1-alpha,self.length_x - 2))/(self.standart_deviation_squared_x * math.sqrt(self.length_x))
+        b += self.sigma_squared_estimator*(stats.t.ppf(1-alpha,self.length_x - 2))/(self.standart_deviation_squared_x * math.sqrt(self.length_x))
+        
+        self.int_beta_one = [a,b]
 
+        c = - stats.t.ppf(1-alpha, self.length_x - 2 )*self.sigma_squared_estimator
+        d = stats.t.ppf(1-alpha, self.length_x - 2 )*self.sigma_squared_estimator
+
+        c *= math.sqrt(self.standart_deviation_squared_x**2 + self.mean_x**2)
+        d *= math.sqrt(self.standart_deviation_squared_x**2 + self.mean_x**2)
+
+        c /= (self.standart_deviation_squared_x * math.sqrt(self.length_x))
+        d /= (self.standart_deviation_squared_x * math.sqrt(self.length_x))
+
+        c += self.beta_zero
+        d += self.beta_zero
         
-        self.beta_one + self.sigma_squared_estimator*(stats.t.ppf(1-alpha,self.length_x - 2))/(self.standart_deviation_squared_x * math.sqrt(self.length_x))]
-        
-        self.int_beta_zero = [ self.beta_zero - stats.t.ppf(1-alpha, self.length_x - 2 )*self.sigma_squared_estimator*math.sqrt(self.standart_deviation_squared_x**2 + self.mean_x**2) / (self.standart_deviation_squared_x * math.sqrt(self.length_x)) ,
-        self.beta_zero + stats.t.ppf(1-alpha, self.length_x - 2)*self.sigma_squared_estimator*math.sqrt(self.standart_deviation_squared_x**2 + self.mean_x**2) / (self.standart_deviation_squared_x * math.sqrt(self.length_x)) ] 
-        
+        self.int_beta_zero = [c,d]
+
         return self.int_beta_one, self.int_beta_zero
 
     def info(self):
