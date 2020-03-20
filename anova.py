@@ -21,5 +21,5 @@ class anova1:
         self.x_array = x_array
         self.y_array = y_array
         self.nbr_diff_elem = element_counter(x_array)
-        
+        #https://towardsdatascience.com/1-way-anova-from-scratch-dissecting-the-anova-table-with-a-worked-example-170f4f2e58ad
 

@@ -109,11 +109,25 @@ class linear_regression:
         table.add_column("Minimal Mean Squared Error")
         table.add_column("Sigma Squared Estimator")
         
-        table.add_row("[ #9deaff ]"+str(self.beta_zero)+"[/#00c9ff]", "[#00c9ff]"+str(self.beta_one)+"[/#00c9ff]", "[#00c9ff]"+str(self.minimal_mean_squared_error)+"[/#00c9ff]", "[#00c9ff]"+str(self.sigma_squared_estimator)+"[/#00c9ff]")
-        # print("minimal mean squared error", self.minimal_mean_squared_error)
-        # print("Sigma squared estimator", self.sigma_squared_estimator)
+        table.add_row("[#9deaff]"+str(self.beta_zero)+"[/#9deaff]", "[#9deaff]"+str(self.beta_one)+"[/#9deaff]", "[#9deaff]"+str(self.minimal_mean_squared_error)+"[/#9deaff]", "[#9deaff]"+str(self.sigma_squared_estimator)+"[/#9deaff]")
         console.print(table)
 
-# class multiple_linear_regression:
-#     def __init__(self, x_matrix, y_matrix):
-            
+
+class multiple_linear_regression:
+    def __init__(self, x_matrix, y_matrix):
+            self.x_matrix = x_matrix
+            self.y_matrix = y_matrix
+
+    def beta_matrix(self):
+        x = np.ones((self.x_matrix,self.x_matrix[0]+1))
+        for i in range(len(self.x_matrix)):
+            for j in range(1,len(self.x_matrix[0])+1):
+                x[i][j] = self.x_matrix[i][j-1]
+        self.x_matrix = x.copy()
+        self.beta = np.dot(np.transpose(self.x_matrix) , self.x_matrix)
+        self.beta = np.linalg.inv(self.beta)
+        self.beta = np.transpose(self.beta) 
+        self.beta = np.dot(self.beta, self.y_array)
+
+        return self.beta
+    
