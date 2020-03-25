@@ -3,6 +3,7 @@ import basicstats as bs
 import math
 import matplotlib.pyplot as plt
 import statistics
+from termcolor import colored
 from scipy import stats
 from rich.console import Console
 from rich.table import Column, Table
@@ -114,20 +115,33 @@ class linear_regression:
 
 
 class multiple_linear_regression:
-    def __init__(self, x_matrix, y_matrix):
+    def __init__(self, x_matrix, y_array):
             self.x_matrix = x_matrix
-            self.y_matrix = y_matrix
+            self.y_array = np.transpose(y_array)
+            self.beta_matrix()
 
     def beta_matrix(self):
-        x = np.ones((self.x_matrix,self.x_matrix[0]+1))
+        x = np.ones((len(self.x_matrix),len(self.x_matrix[0])+1))
         for i in range(len(self.x_matrix)):
             for j in range(1,len(self.x_matrix[0])+1):
                 x[i][j] = self.x_matrix[i][j-1]
+        
+
         self.x_matrix = x.copy()
         self.beta = np.dot(np.transpose(self.x_matrix) , self.x_matrix)
         self.beta = np.linalg.inv(self.beta)
-        self.beta = np.transpose(self.beta) 
+        self.beta = np.dot(self.beta, np.transpose(self.x_matrix)) 
         self.beta = np.dot(self.beta, self.y_array)
 
         return self.beta
+    
+    def info(self):
+        # os.system("clear")
+        # console = Console()
+        # table = Table(show_header=True, head_style="bold yellow")
+        print(colored(self.beta, "green"))
+
+class logistic_regression:
+    pass
+    
     
