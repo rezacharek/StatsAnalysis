@@ -2,12 +2,15 @@ import regression as reg
 import numpy as np
 from scipy import stats
 from termcolor import colored
-i= 0
-j = 50
-m =500
-x = np.linspace(0, j, m)
-beta1 = 5
-beta0 = 3
+import pandas as pd
+
+import anova as aov
+# i= 0
+# j = 50
+# m =500
+# x = np.linspace(0, j, m)
+# beta1 = 5
+# beta0 = 3
 
 # y = beta1 * x + beta0*np.repeat(1,m) + np.random.normal(0,0,m)
 # print(beta0*np.repeat(1,25))
@@ -49,3 +52,12 @@ beta0 = 3
 # print(statistics.variance(x))
 # print(statistics.variance(y))\
 # print(stats.t.ppf(1-0.025, 999))
+
+A = [12.6, 12, 11.8, 11.9, 13, 12.5, 14]
+B = [10, 10.2, 10, 12, 14, 13]
+C = [10.1, 13, 13.4, 12.9, 8.9, 10.7, 13.6, 12]
+all_scores = A + B + C
+company_names = (['A'] * len(A)) +  (['B'] * len(B)) +  (['C'] * len(C))
+data = pd.DataFrame({'company': company_names, 'score': all_scores})
+
+test = aov.anova1("score", "company",data)

@@ -38,12 +38,9 @@ class linear_regression:
         self.cxy = self.cxy/self.length_x
         self.rxy = self.cxy/( self.standart_deviation_squared_x *self.standart_deviation_squared_y)
 
-
         self.beta_one = self.cxy/bs.empirical_variance(self.x_array)
         self.beta_zero = self.mean_y - self.beta_one*self.mean_x
     
-
-        
         #computation of the mmserror
         self.minimal_mean_squared_error = bs.empirical_variance(self.y_array)*(1-self.rxy**2)
 
